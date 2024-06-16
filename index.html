@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no"  />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style/style.css" />
+    <!-- html2canvas Link -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <!-- Select2 Links For Dropdown -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!--  -->
+    <script src="./js/html2canvas.min.js"></script>
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <script src="./js/select2.js"></script>
+    <script src="./js/select2.min.js"></script>
+  </head>
+  <body>
+    <!-- <div id="test"></div> -->
+    <!-- Intro Page  -->
+    <div class="intro-page">
+      <h4>استوری ساز لنت لند</h4>
+      <div class="intro-page-icon">
+        <img src="./Images/icons8-instagram-48 (1).png" alt="">
+      </div>
+      <h3>لطفا قالب استوری خود را انتخاب کنید:</h3>
+      <div class="item-container">
+       <div  class="items-div">
+        <div class="item">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+          <!-- <div class="line"></div> -->
+          <div class="radio-container">
+            <input type="radio" name="radio" class="radio" checked >            
+            <label for="">انتخاب </label>
+          </div>
+        </div>
+        <div class="item">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+          
+          <div class="radio-container">
+            <input type="radio" name="radio" class="radio" >
+            <label for="">انتخاب </label>
+          </div>
+        </div>
+       </div>
+        <div class="checkbox-div">
+          <input type="checkbox" class="checkbox">
+          <label for="">محصولات دارای عکس باشد</label>
+        </div>      
+      </div>
+      <button class="start-btn">
+        <!-- <img src="./Images/icons8-arrow-24.png" alt=""> -->
+        ساخت استوری
+      </button>
+      <div class="intro-page-information">
+        <h5>راهنما :</h5>
+        <p>در قالب شماره 1 فقط میتوانید نام کالا و قیمت را وارد کنید.</p>
+        <p>در قالب شماره ی 2 علاوه بر موارد بالا میتوانید عکس کالا را نیاز وارد کنید.</p>        
+      </div>
+    </div>
+    <!-- Form -->
+    <div class="form" crossOrigin="anonymous">
+      <!-- Form Header -->
+      <header class="form-header">
+        <div class="header-buttons">
+          <div class="header-btn">
+            <select name="" id="template-select" onchange="template()">
+              <option value="">قالب ها</option>
+              <option value="Images/1.png" crossOrigin="anonymous">
+                قالب 1
+              </option>
+              <option value="Images/lentland-template.png">قالب 2</option>
+              <option value="Images/3.png" crossOrigin="anonymous">
+                قالب 3
+              </option>
+            </select>
+            <button class="typography-btn">
+              تایپوگرافی
+              <img
+                class="typegraphy-img"
+                src="./Images/icons8-forward-50.png"
+                alt=""
+              />
+            </button>
+          </div>
+        </div>
+        <input type="file" id="file-input-header" accept="image/*" />
+        <p class="date-p"></p>
+      </header>
+      <div class="typography-div">
+        <div class="typography-child">
+          <p>تغییر رنگ متن</p>
+          <input type="color" id="color-picker" onchange="changeTextColor()" />
+        </div>
+        <div class="typography-child">
+          <p>فونت</p>
+          <select name="" id="font-family-select" onchange="fontFamily()">
+            <option value="IRANYekanWeb">ایران یکان</option>
+            <option value="IRANSansMobile">ایران سنس</option>
+            <option value="IRANYekanWebBold">ایران یکان(بولد)</option>
+            <option value="IRANSansBold">ایران سنس(بولد)</option>
+          </select>
+        </div>
+        <div class="typography-child">
+          <p>فونت سایز</p>
+          <select name="" id="font-size-select" onchange="fontSize()">
+            <option value="8px">کوچک</option>
+            <option value="12px">متوسط</option>
+            <option value="16px" selected>بزرگ</option>
+            <option value="20px">خیلی بزرگ</option>
+          </select>
+        </div>
+        <div class="typography-child">
+          <p class="p">-</p>
+          <button class="save-btn">ذخیره</button>
+        </div>
+      </div>
+      <!-- Form Main -->
+      <main class="form-main">
+        <div class="div-main">
+          <div class="first">
+            <!-- <button class="file-input-btn">انتخاب تصویر</button> -->
+            <input type="file" class="file-input">
+            <select style="width: 75%;" class="products-select2" id="products-select2" name="state">
+              <option value="AL">لنت ترمز</option>
+              <option value="WY">تایر</option>
+              <option value="WY">گیربکس</option>
+            </select>
+            <input class="avilible-input" type="text" maxlength="10" />
+            <button class="button">
+              <img src="./Images/icons8-cross-26 (2).png" alt="" />
+            </button>
+          </div>
+          <div class="product-main">
+
+          </div>  
+        </div>
+      </main>
+      <!-- Form Footer -->
+      <footer class="form-footer">
+        <div class="form-footer-btns">
+          <button class="comeBack-intro-page"> <img src="./Images/icons8-arrow-24.png" alt=""> بازگشت</button>
+          <button class="preview"><img src="./Images/icons8-eye-24.png" alt="">پیش نمایش</button>
+        </div>
+        <button id="upload-button"> <img src="./Images/icons8-image-48.png" alt="">تغییر پس زمینه</button>
+        <input type="file" id="file-input" accept="image/*" />
+      </footer>
+    </div>
+    <!-- Preview Form -->
+    <div class="preview-div" crossOrigin="anonymous">
+      <div class="diiiv" id="content">
+        <!-- Preview Main -->
+        <main class="preview-main" id="preview-main">
+          <!-- <div class="datee"></div> -->
+          <p class="datee">5545</p>
+          <div class="newDivContainer"></div>
+          <!-- <p class="preview-p">توجه : کلیه قیمت اجناس موجود در لیست به تومان میباشد.</p> -->
+        </main>
+      </div>
+      <!-- Preview Footer -->
+      <footer class="preview-footer">
+        <button class="comeBack"> <img src="./Images/icons8-arrow-24.png" alt=""> بازگشت</button>
+        <button id="export-btn"><img src="./Images/icons8-download-32.png" alt=""> دانلود تصویر</button>
+      </footer>
+    </div>    
+    <a id="download-link" style="display: none"></a>
+    <!-- Script Code -->
+    <script src="./js/script.js"></script>
+    <script src="./js/jq-js.js"></script>    
+  </body>
+</html>
