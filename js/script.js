@@ -42,7 +42,14 @@ let product_main = document.querySelector(".product-main");
 let checkbox_div = document.querySelector('.checkbox-div');
 let checkbox = document.querySelector('.checkbox');
 let radio_container = document.querySelector(".radio-container");
+let typography_div_title = document.querySelector('.typography-div-title');
+let title_save_btn = document.querySelector(".title-save-btn");
+let title_btn =document.querySelector(".title_btn");
+let title_input = document.querySelector('.title-input');
+let title_img =document.querySelector('.title-img');
+let title_p = document.querySelector('.title_p');
 let body =document.querySelector("body");
+let blur = document.querySelector('.blur'); 
 let selectedColor;
 let check = false;
 
@@ -50,6 +57,7 @@ let check = false;
 typographyDiv.style.display = "none";
 previewDiv.style.display = "none";
 form.style.display = 'none';
+typography_div_title.style.display = 'none';
 
 // Function None Menus
 function noneAll() {
@@ -120,7 +128,7 @@ function changeTextColor() {
   selectedColor = colorPicker.value;
 }
 
-
+let x;
 let avilible_ps = document.querySelectorAll(".avilible_p");
 function addNewLine(){ 
   
@@ -182,6 +190,8 @@ function addNewLine(){
   cross_img.src = "Images/icons8-cross-26 (1).png";  
   close_btn.append(cross_img);
   product_main.append(div);
+
+
   
   avilibleInput.value = "";
   let btns = document.querySelectorAll('.close_btn');
@@ -204,8 +214,7 @@ function addNewLine(){
     if(body.classList == "theme"){
       e.fontSize = "14px";
     }else{
-      e.style.fontSize = selectedFontValue;
-      console.log('it is 1 col');
+      e.style.fontSize = selectedFontValue;      
     }
   });  
 
@@ -222,11 +231,12 @@ function addNewLine(){
 }
 // add new line in form
 button.addEventListener("click", () => {  
+  
   let allDiv = document.querySelectorAll('.div');
   if(allDiv.length == 9){
     button.removeEventListener('click',addNewLine);
     button.style.opacity = "50%";
-    alert('نمی توانید بیشتر از 9 مورد اضافه کنید');
+    alert('نمی توانید بیشتر از 10 مورد اضافه کنید');
   }
   else{       
     button.style.opacity = "100%";    
@@ -237,21 +247,41 @@ button.addEventListener("click", () => {
 // make new line whit enter
 document.addEventListener('keydown',(e)=>{
   if(e.key === "Enter"){
-    let allDiv = document.querySelectorAll('.div');
-    addNewLine();   
+    let allDiv = document.querySelectorAll('.div');    
     // check count of divs 
-    if(allDiv.length == 9){
+    if(allDiv.length > 9){      
       button.style.opacity = "50%";
       button.removeEventListener('click',addNewLine);          
-      alert('نمی توانید بیشتر از 11 مورد اضافه کنید');
-    } 
+      alert('نمی توانید بیشتر از 10 مورد اضافه کنید');
+    } else{
+      button.style.opacity = "100%";    
+      addNewLine();  
+    }
   }
 });
+let options = { year: 'numeric', month: 'long', day: 'numeric'};
 
+let title_container = "";
+title_save_btn.addEventListener('click',()=>{    
+  title_container.value = "";
+  title_container = title_input.value;
+  typography_div_title.style.display = 'none'; 
+  first.style.marginTop = "40px";  
+});
 // Preview Button Show Preview Main
-preview.addEventListener("click", function () {
-  // Set Date
-  datee.textContent = date.toLocaleDateString("fa-IR", option);
+preview.addEventListener("click", function () {  
+  title_p.textContent = title_container;  
+  
+  // Set Date  
+  const date = new Date();
+  const option = {
+    year: "numeric",
+    month: "long",
+    // weekday: "long",
+    day: "numeric",
+  };
+  datee.textContent = `${date.toLocaleDateString("fa-IR", option)}`;
+
   let aviPss = document.querySelectorAll(".avilible_p");
   let valPss = document.querySelectorAll(".valdata_p");
   previewDiv.style.display = "block";
@@ -268,13 +298,14 @@ preview.addEventListener("click", function () {
     else{
       newDiv.innerHTML = `<span class="aviP">${valPss[i].innerHTML}</span> <span class="valP">${aviPss[i].textContent}</span>`;        
     }
-
     let newDivs = document.querySelectorAll(".new-div");
     for(let i =0;i < newDivs.length;i++){
       newDivs[i].style.borderBottom = "1px solid #e5e4e4";
     }
-    newDivContainer.append(newDiv);
-    previewMain.append(newDivContainer);
+    newDivContainer.append(newDiv);         
+    
+    // blur.append(newDivContainerv);
+    // previewMain.append(blur);
     let aviPs = document.querySelectorAll(".aviP");
     let valPs = document.querySelectorAll(".valP");
     aviPs.forEach((e) => {
@@ -294,6 +325,8 @@ preview.addEventListener("click", function () {
     datee.style.color = selectedColor;
     datee.style.fontFamily = selectedFontFamilyValue;
   }
+  blur.append(newDivContainerv);
+    previewMain.append(blur);
 });
 
 // Button For Come To First Page
@@ -301,6 +334,9 @@ comeBack.addEventListener("click", () => {
   previewDiv.style.display = "none";
   form.style.display = "block";
 });
+
+//  Title Btn 
+
 
 // Header Font,FontSize,Color Button
 saveBtn.addEventListener("click", () => {  
@@ -319,8 +355,7 @@ saveBtn.addEventListener("click", () => {
       e.fontSize = "14px";
       // checkbox.      
     }else{
-      e.style.fontSize = selectedFontValue;
-      console.log('it is 1 col');
+      e.style.fontSize = selectedFontValue;      
     }  
   });
   dateP.style.color = selectedColor;
@@ -335,6 +370,8 @@ saveBtn.addEventListener("click", () => {
 // Footer Upload Button Main Function (Done)
 document.getElementById("upload-button").onclick = () =>
   document.getElementById("file-input").click();
+  form.style.width = "80%";
+  form.style.height = "80%";  
 document.getElementById("file-input").onchange = function () {
   const file = this.files[0];
   if (file) {
@@ -342,12 +379,13 @@ document.getElementById("file-input").onchange = function () {
     reader.onload = (e) => (
       (document.querySelector(
         ".form"
-      ).style.backgroundImage = `url(${e.target.result})`),
+      ).style.backgroundImage = `url(${e.target.result})`),  
+      (console.log(e.target.result))     
       (document.querySelector(
         ".preview-main"
       ).style.backgroundImage = `url(${e.target.result})`),
       console.log(e.target.result)
-    );
+    );       
     reader.readAsDataURL(file);
   }
 };
@@ -357,7 +395,9 @@ document.getElementById("export-btn").addEventListener("click", function () {
   const preview_elemet = document.querySelector(".preview-div");
   document.querySelector(".preview-footer").style.display = "none";
   aviPss = document.querySelectorAll(".aviP");
-  newDivs = document.querySelectorAll('.new-div'); 
+  valPss = document.querySelectorAll(".valP");
+  newDivs = document.querySelectorAll(".new-div"); 
+
   for(let i= 0;i < newDivs.length;i++){
     newDivs[i].classList.add('new-divv');
   }
@@ -365,9 +405,15 @@ document.getElementById("export-btn").addEventListener("click", function () {
     for(let i= 0;i < aviPss.length;i++){
       aviPss[i].classList.add("add-class-aviP")
     }
+    for(let i= 0;i < valPss.length;i++){
+      valPss[i].classList.add("add-class-aviP")
+    }
   }else{
     for(let i= 0;i < aviPss.length;i++){
       aviPss[i].classList.add("add-class-aviP-image")
+    }
+    for(let i= 0;i < valPss.length;i++){
+      valPss[i].classList.add("add-class-aviP-image")
     }
   }
   // Convert Webp To jpeg
@@ -375,10 +421,10 @@ document.getElementById("export-btn").addEventListener("click", function () {
     useCORS: true,
     allowTaint: false,
   }).then((canvas) => {
-    const dataURL = canvas.toDataURL("image/png");
+    const dataURL = canvas.toDataURL("image/png");    
     const link = document.createElement("a");
     link.href = dataURL;    
-    link.download = `Story-${date}.jpeg`;
+    link.download = `Story-${date}.jpeg`;    
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -387,10 +433,16 @@ document.getElementById("export-btn").addEventListener("click", function () {
       for(let i= 0;i < aviPss.length;i++){
         aviPss[i].classList.remove("add-class-aviP")
       }
+      for(let i= 0;i < valPss.length;i++){
+        valPss[i].classList.remove("add-class-aviP")
+      }
     }else{
       for(let i= 0;i < aviPss.length;i++){
         aviPss[i].classList.remove("add-class-aviP-image")
-      }
+      }   
+      for(let i= 0;i < valPss.length;i++){
+        valPss[i].classList.remove("add-class-aviP-image")
+      }   
     }
   });
 });
@@ -400,17 +452,18 @@ const date = new Date();
 const option = {
   year: "numeric",
   month: "long",
-  weekday: "long",
+  // weekday: "long",
   day: "numeric",
 };
 dateP.textContent = `${date.toLocaleDateString("fa-IR", option)}`;
 
 // Typography button
 typographyBtn.addEventListener("click", () => {
+  typography_div_title.style.display = 'none';  
   if (typographyDiv.style.display == "none") {
     formMain.style.marginTop = "0px";
     divMain.style.marginTop = "-10px";
-    typographyDiv.style.display = "flex";
+    typographyDiv.style.display = "flex";    
     typegraphyImg.style.rotate = "180deg";
     saveBtn.style.width = "70px";
     if (document.body.clientWidth < 768) {
@@ -430,8 +483,7 @@ typographyBtn.addEventListener("click", () => {
 
 // write avilible or not avilible in input
 avilibleInput.value = "";
-avilibleInput.addEventListener("keyup",(e)=>{  
- // alert(e.key);
+avilibleInput.addEventListener("keyup",(e)=>{   
   for(let i = 0; i < avilibleInput.value.length;i++){      
     if(e.key == 'm'){
       if(avilibleInput.value.length == 1){
@@ -543,8 +595,22 @@ for(let i= 0;i < items.length;i++){
 // check box event code
 checkbox_div.addEventListener('click',()=>{
   checkbox.click();
-})
+});
 checkbox.addEventListener("click",()=>{
   checkbox.click();  
-})
+});
 
+let first = document.querySelector(".first");
+title_btn.addEventListener('click',()=>{
+  if(typography_div_title.style.display == 'none'){
+
+    typography_div_title.style.display = 'flex';  
+    first.style.marginTop = "-30px";
+    typographyDiv.style.display = 'none';
+    title_img.style.rotate = "180deg";
+  }else{
+    typography_div_title.style.display = 'none';  
+    first.style.marginTop = "30px";
+    title_img.style.rotate = "360deg";
+  }
+});

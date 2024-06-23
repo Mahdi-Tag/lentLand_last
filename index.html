@@ -24,15 +24,17 @@
     <script src="./js/select2.js"></script>
     <script src="./js/select2.min.js"></script>
   </head>
-  <body>
-    <!-- <div id="test"></div> -->
+  <body>    
     <!-- Intro Page  -->
     <div class="intro-page">
-      <h4>استوری ساز لنت لند</h4>
+      <div class="logo-div">
+        <img class="logo" src="./Images/logo.png" alt="">
+        <h4>استوری ساز لنت لند</h4>
+      </div>
       <div class="intro-page-icon">
         <img src="./Images/icons8-instagram-48 (1).png" alt="">
       </div>
-      <h3>لطفا قالب استوری خود را انتخاب کنید:</h3>
+      <h3>لطفا قالب استوری خود را انتخاب کنید.</h3>
       <div class="item-container">
        <div  class="items-div">
         <div class="item">
@@ -59,12 +61,12 @@
        </div>
         <div class="checkbox-div">
           <input type="checkbox" class="checkbox">
-          <label for="">محصولات دارای عکس باشد</label>
+          <label for="">محصولات دارای عکس باشد.</label>
         </div>      
       </div>
       <button class="start-btn">
         <!-- <img src="./Images/icons8-arrow-24.png" alt=""> -->
-        ساخت استوری
+        شروع ساخت استوری
       </button>
       <div class="intro-page-information">
         <h5>راهنما :</h5>
@@ -74,7 +76,8 @@
     </div>
     <!-- Form -->
     <div class="form" crossOrigin="anonymous">
-      <!-- Form Header -->
+      <div class="blur" style="width: 100%;height: 100%;">
+        <!-- Form Header -->     
       <header class="form-header">
         <div class="header-buttons">
           <div class="header-btn">
@@ -96,6 +99,13 @@
                 alt=""
               />
             </button>
+            <button class="title_btn">
+              عنوان
+              <img
+              class="title-img"
+              src="./Images/icons8-forward-50.png"
+              alt=""
+            /></button>
           </div>
         </div>
         <input type="file" id="file-input-header" accept="image/*" />
@@ -129,27 +139,42 @@
           <button class="save-btn">ذخیره</button>
         </div>
       </div>
-      <!-- Form Main -->
+      <!-- typography-div-title -->
+      <div class="typography-div-title">
+        <div class="typography-child" style="display: flex;flex-direction: row;">          
+          <input style="height: 30px;" class="title-input" type="text" placeholder="عنوان استوری را وارد کنید">
+        </div>           
+        <div class="typography-child">
+          <!-- <p class="p">-</p> -->
+          <button class="title-save-btn">ذخیره</button>
+        </div>
+      </div>
+      <!-- Form Main -->     
       <main class="form-main">
         <div class="div-main">
-          <div class="first">
+          <div class="first" style="display: flex;flex-direction: column;">
             <!-- <button class="file-input-btn">انتخاب تصویر</button> -->
-            <input type="file" class="file-input">
-            <select style="width: 75%;" class="products-select2" id="products-select2" name="state">
-              <option value="AL">لنت ترمز</option>
-              <option value="WY">تایر</option>
-              <option value="WY">گیربکس</option>
-            </select>
-            <input class="avilible-input" type="text" maxlength="10" />
-            <button class="button">
-              <img src="./Images/icons8-cross-26 (2).png" alt="" />
-            </button>
+            <div style="display: flex;align-items: center;justify-content: space-between;font-size: 12px;padding-top: 5px;padding-bottom: 10px;">
+              <label for="" style="opacity: 50%;">نام محصول </label>
+              <label for="" style="padding-left: 10px;opacity: 50%;">قیمت محصول</label>
+            </div>
+            <div style="display: flex;align-items: center;justify-content: center;">
+              <input type="file" class="file-input">
+              <select style="width: 75%;" class="products-select2" id="products-select2" name="state">
+                <option value="AL">لنت ترمز</option>
+                <option value="WY">تایر</option>
+                <option value="WY">گیربکس</option>
+              </select>     
+              <input class="avilible-input" type="text" maxlength="10" />
+              <button class="button">
+                <img src="./Images/icons8-cross-26 (2).png" alt="" />
+              </button>
+            </div>       
           </div>
-          <div class="product-main">
-
-          </div>  
+          <div class="product-main"></div>  
         </div>
-      </main>
+      </main>          
+      </div>
       <!-- Form Footer -->
       <footer class="form-footer">
         <div class="form-footer-btns">
@@ -162,20 +187,24 @@
     </div>
     <!-- Preview Form -->
     <div class="preview-div" crossOrigin="anonymous">
+      <!--  -->
       <div class="diiiv" id="content">
         <!-- Preview Main -->
-        <main class="preview-main" id="preview-main">
-          <!-- <div class="datee"></div> -->
-          <p class="datee">5545</p>
-          <div class="newDivContainer"></div>
-          <!-- <p class="preview-p">توجه : کلیه قیمت اجناس موجود در لیست به تومان میباشد.</p> -->
-        </main>
-      </div>
+        <main class="preview-main" id="preview-main">           
+            <div class="blur" style="width: 100%; height:100%;">
+              <p class="datee"></p>
+              
+              <p class="title_p"></p>
+              <div class="newDivContainer">
+              </div>            
+            </div>
+          </main>
+        </div>
       <!-- Preview Footer -->
       <footer class="preview-footer">
         <button class="comeBack"> <img src="./Images/icons8-arrow-24.png" alt=""> بازگشت</button>
         <button id="export-btn"><img src="./Images/icons8-download-32.png" alt=""> دانلود تصویر</button>
-      </footer>
+      </footer>      
     </div>    
     <a id="download-link" style="display: none"></a>
     <!-- Script Code -->

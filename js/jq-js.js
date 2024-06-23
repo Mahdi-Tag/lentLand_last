@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     $('.products-select2').select2();
     var flag=0;
     $(".avilible-input").keyup(function(e){
@@ -20,7 +19,7 @@ $(document).ready(function() {
         if($(this).val()==''){
             $(this).removeClass("active");
         }       
-    });        
+    });    
 });
 $(function () {
     $('body').on('DOMNodeInserted', 'select', function () {
